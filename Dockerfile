@@ -4,20 +4,11 @@ FROM eclipse-temurin:21-jdk
 # Set working directory
 WORKDIR /app
 
-# Copy the Maven wrapper and pom.xml
-COPY backend/.mvn/ .mvn
-COPY backend/mvnw .
-COPY backend/pom.xml .
+# Copy built JAR from backend/target
+COPY backend/target/MovieCatalog-0.0.1-SNAPSHOT.jar app.jar
 
-# Download dependencies
-RUN ./mvnw dependency:go-offline
+# Expose port
+EXPOSE 8080
 
-# Copy the rest of the project
-COPY backend/src ./src
-
-# Package the application
-RUN ./mvnw clean package -DskipTests
-
-# Run the app (IMPORTANT: use actual JAR file name)
-CMD ["java", "-jar", "target/MovieCatalog-0.0.1-SNAPSHOT.jar"]
-
+# Run the app
+ENTRYPOINT ["java", "-jar", "app.jar"]
