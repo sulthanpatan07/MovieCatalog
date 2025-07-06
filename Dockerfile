@@ -10,7 +10,7 @@ COPY backend/mvnw .
 COPY backend/pom.xml .
 
 # Download dependencies
-RUN chmod +x mvnw && ./mvnw dependency:go-offline
+RUN ./mvnw dependency:go-offline
 
 # Copy the rest of the project
 COPY backend/src ./src
@@ -18,5 +18,6 @@ COPY backend/src ./src
 # Package the application
 RUN ./mvnw clean package -DskipTests
 
-# Run the app
-CMD ["java", "-jar", "target/moviecatalog-0.0.1-SNAPSHOT.jar"]
+# Run the app (IMPORTANT: use actual JAR file name)
+CMD ["java", "-jar", "target/MovieCatalog-0.0.1-SNAPSHOT.jar"]
+
