@@ -10,7 +10,8 @@ public class CorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-            .allowedOrigins("https://frontend-8gqrqpuzl-sulthanpatans-projects.vercel.app")
+            .allowedOrigins("https://frontend-li2tsm22p-sulthanpatans-projects.vercel.app")
+
 
              // ✅ Use your actual Vercel frontend URL
             .allowedMethods("GET", "POST", "PUT", "DELETE")
